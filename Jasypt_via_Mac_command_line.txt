@@ -1,0 +1,55 @@
+Encrypt via command line using the JAR
+
+1. Change the terminal into the folder that contains the Jasypt jar.
+    cd /Users/cohanlon/IdeaProjects/encryptor/src/main/resources
+
+2. Run the Java command against the Jasypt JAR by providing:
+    - the value to encrypt,
+    - the password used to decrypt, and
+    - the encryption algorithm
+
+    java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input=<valueToEncrypt>       password=<passwordToDec> algorithm=<algorithmName>
+    java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input=mySecretPassword1234   password=secretkey       algorithm=PBEWithMD5AndDES
+
+EXAMPLE OUTPUT:
+    cohanlon@MacBook-Pro-2 resources % java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input=mySecretPassword1234   password=secretkey       algorithm=PBEWithMD5AndDES
+    ----ENVIRONMENT-----------------
+    Runtime: Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 11.0.8+10-LTS
+
+    ----ARGUMENTS-------------------
+    input: mySecretPassword1234
+    password: secretkey
+    algorithm: PBEWithMD5AndDES
+
+    ----OUTPUT----------------------
+    pVvVfrTGw+VHI9MegPKqB1xMkxQ5eimU+Kvm06LRQIw=
+
+
+
+===================================================================================================================================================================================================================
+
+Decrypt via command line using the JAR
+
+1. Change the terminal into the folder that contains the Jasypt jar.
+    cd /Users/cohanlon/IdeaProjects/encryptor/src/main/resources
+
+2. Run the Java command against the Jasypt JAR by providing:
+    - the hash created from the previous encryption process,
+    - the password used to decrypt,
+
+    java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI input=<encryptedValueHash>                             password=<passwordToDec>
+    java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI input="pVvVfrTGw+VHI9MegPKqB1xMkxQ5eimU+Kvm06LRQIw="   password=secretkey
+
+
+EXAMPLE OUTPUT:
+    cohanlon@MacBook-Pro-2 resources % java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI  input="pVvVfrTGw+VHI9MegPKqB1xMkxQ5eimU+Kvm06LRQIw=" password=secretkey
+
+    ----ENVIRONMENT-----------------
+    Runtime: Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 11.0.8+10-LTS
+
+    ----ARGUMENTS-------------------
+    input: pVvVfrTGw+VHI9MegPKqB1xMkxQ5eimU+Kvm06LRQIw=
+    password: secretkey
+
+    ----OUTPUT----------------------
+    mySecretPassword1234
