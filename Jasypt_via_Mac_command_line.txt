@@ -40,6 +40,8 @@ Decrypt via command line using the JAR
     java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI input=<encryptedValueHash>                             password=<passwordToDec>
     java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI input="pVvVfrTGw+VHI9MegPKqB1xMkxQ5eimU+Kvm06LRQIw="   password=secretkey
 
+    - Add the key to the VM arguments on the Spring runtime in order to allow @EnableEncryptableProperties to work application-wide
+        - EX: "-Djasypt.encryptor.password=secretkey"
 
 EXAMPLE OUTPUT:
     cohanlon@MacBook-Pro-2 resources % java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI  input="pVvVfrTGw+VHI9MegPKqB1xMkxQ5eimU+Kvm06LRQIw=" password=secretkey
@@ -53,3 +55,5 @@ EXAMPLE OUTPUT:
 
     ----OUTPUT----------------------
     mySecretPassword1234
+
+

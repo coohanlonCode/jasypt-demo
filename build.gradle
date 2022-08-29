@@ -28,6 +28,11 @@ dependencies {
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
 
 	implementation 'org.jasypt:jasypt:1.9.3'
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4' // Need this to use @EnableEncryptableProperties
+
+
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+
 }
 
 tasks.named('test') {
